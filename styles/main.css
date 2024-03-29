@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url(./variables/light.css) screen and (prefers-color-scheme: light);
+@import url(./variables/dark.css) screen and (prefers-color-scheme: dark);
+@import url(./variables/light-hc.css) screen and (prefers-color-scheme: light)
+  and (forced-colors: active);
+@import url(./variables/dark-hc.css) screen and (prefers-color-scheme: dark) and
+  (forced-colors: active);
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --font-family-headings: 'Zilla Slab', Georgia, serif;
+  --font-family-base: 'Inter', system-ui, Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--font-family-base);
+  min-height: 100vh;
+}
+
+h1 {
+  color: var(--md-sys-color-primary);
+  font-family: var(--font-family-headings);
+  text-align: center;
+}
+
+section {
+  padding: 20px;
+}
+
+form {
+  max-width: max-content;
+  margin: 0 auto;
+  border-radius: 12px;
+  padding: 15px;
+  background-color: var(--md-sys-color-surface-container-high);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 3px -2px,
+    rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
+}
+
+label {
+  font-family: var(--font-family-headings);
+  color: var(--md-sys-color-primary);
+  font-weight: 500;
+  display: block;
+  margin: 5px auto;
+  font-size: 1.125rem;
+}
+
+select,
+textarea {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--font-family-base);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 0.6em;
+  max-width: 100%;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+select {
+  cursor: pointer;
+}
+
+button {
+  font-size: 14px;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  background-color: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface-variant);
+  position: relative;
+  font-weight: 500;
+
+  /* the state layer */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    opacity: 0%;
+    background-color: var(--md-sys-color-surface-variant);
+    transition: opacity 300ms ease;
+  }
+
+  &.filled {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+
+    &::after {
+      background-color: var(--md-sys-color-on-primary);
+    }
+  }
+
+  &:disabled {
+    opacity: 38%;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    opacity: 8%;
+  }
+
+  &:focus::after,
+  &:active::after {
+    opacity: 10%;
+  }
+}
+
+@media (max-width: 767px) {
+  select {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
